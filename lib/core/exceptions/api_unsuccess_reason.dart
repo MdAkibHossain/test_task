@@ -1,0 +1,1 @@
+enum UnSuccessful { unAuthorize, other }
