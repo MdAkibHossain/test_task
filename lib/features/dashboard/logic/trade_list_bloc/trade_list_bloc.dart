@@ -57,20 +57,17 @@ class TradeListBloc extends Bloc<TradeListEvent, TradeListState> {
         }, (r) {
           List<TradeListDataModel> tradeListData = [];
           List<dynamic> dataMap = r.data as List<dynamic>;
-          logView(dataMap.toString());
 
           dataMap.forEach((dynamic data) {
             TradeListDataModel datas = TradeListDataModel.fromJson(data);
             tradeListData.add(datas);
           });
-          logView(tradeListData.length.toString());
-          double total = 0; // Initialize total to 0 instead of null
+
+          double total = 0;
           for (int i = 0; i < tradeListData.length; i++) {
-            total += (tradeListData[i].profit ??
-                0); // Safely add profit to total, handling nulls
+            total += (tradeListData[i].profit ?? 0);
           }
 
-          logView(total.toString());
           emit(TradeListSuccessful(tradeListData: tradeListData, total: total));
         });
       });
